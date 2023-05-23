@@ -41,3 +41,15 @@ confusion_matrix(y_test, y_pred)
 precision_score(y_test, y_pred)
 
 recall_score(y_test, y_pred)
+
+estimated_salary = ['EstimatedSalary']
+age = ['Age']
+
+y_pred = y_pred.squeeze()
+Estimated_Salary = X_test[estimated_salary].values.squeeze()
+Age = X_test[age].values.squeeze()
+sns.scatterplot(x = Estimated_Salary, y = Age, hue = y_pred)
+plt.title('Logistic Regression')
+plt.xlabel('Estimated Salary')
+plt.ylabel('Age')
+plt.legend()
