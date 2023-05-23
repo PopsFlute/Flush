@@ -1,0 +1,87 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+
+data = pd.read_csv("titanic_train.csv")
+
+
+
+from seaborn import load_dataset
+tips = load_dataset("tips")
+
+
+
+sns.countplot(data=data, x='Survived')
+plt.show()
+
+
+
+data['Sex'].value_counts().plot(kind="pie",autopct="%.2f")
+plt.show()
+
+
+
+data=data.dropna()
+plt.hist(data['Age'],bins=5)
+plt.show()
+
+
+
+sns.distplot(data['Age'])
+plt.show()
+
+
+sns.scatterplot(data=tips, x="total_bill", y="tip")
+plt.show()
+
+
+
+sns.scatterplot(data=tips, x="total_bill", y="tip", hue="sex")
+plt.show()
+
+
+
+sns.scatterplot(data=tips, x="total_bill", y="tip", hue="sex", style="smoker")
+plt.show()
+
+
+
+sns.barplot(x=data['Pclass'], y=data['Age'])
+plt.show()
+
+
+
+sns.barplot(x=data['Pclass'], y=data['Fare'], hue=data['Sex'])
+plt.show()
+
+
+
+sns.boxplot(x=data['Sex'], y=data['Age'])
+plt.show()
+
+
+
+sns.catplot(data=data, x='Sex', y='Age', hue='Survived', kind='box')
+plt.show()
+
+
+
+sns.distplot(data[data['Survived'] == 0]['Age'],hist=False, color="blue")
+sns.distplot(data[data['Survived'] == 1]['Age'],hist=False, color="orange")
+plt.show()
+
+
+
+pd.crosstab(data['Pclass'],data['Survived'])
+
+
+sns.heatmap(pd.crosstab(data['Pclass'],data['Survived']))
+plt.show()
+
+
+
+sns.clustermap(pd.crosstab(data['Parch'],data['Survived']))
+plt.show()

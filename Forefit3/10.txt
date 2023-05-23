@@ -1,0 +1,116 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+info = pd.read_csv("IRIS.csv")
+
+
+
+info.head()
+
+
+info.mean()
+
+
+
+info.median()
+
+
+
+info.mode()
+
+
+
+info.max()
+
+
+
+
+info.min()
+
+
+info.var()
+
+
+
+plt.figure(figsize = (10, 7))
+x = info["sepal_length"]
+
+plt.hist(x, bins = 20, color = "green")
+plt.title("Sepal Length in cm")
+plt.xlabel("Sepal_Length_cm")
+plt.ylabel("Count")
+plt.show()
+
+
+
+plt.figure(figsize = (10, 7))
+x = info.sepal_width
+
+plt.hist(x, bins = 20, color = "green")
+plt.title("Sepal Width in cm")
+plt.xlabel("Sepal_Width_cm")
+plt.ylabel("Count")
+plt.show()
+
+
+
+plt.figure(figsize = (10, 7))
+x = info.petal_length
+
+plt.hist(x, bins = 20, color = "green")
+plt.title("Petal Length in cm")
+plt.xlabel("Petal_Length_cm")
+plt.ylabel("Count")
+
+plt.show()
+
+
+
+plt.figure(figsize = (10, 7))
+x = info.petal_width
+
+plt.hist(x, bins = 20, color = "green")
+plt.title("Petal Width in cm")
+plt.xlabel("Petal_Width_cm")
+plt.ylabel("Count")
+
+plt.show()
+
+
+
+plt.figure(figsize = (10, 7))
+info.boxplot()
+plt.show()
+
+
+
+
+fig, axes=plt.subplots(2, 2, figsize=(16, 8))
+axes[0,0].set_title("Distribution of sepal length")
+axes[0,0].hist(info["sepal_length"]);
+
+axes[0,1].set_title("Distribution of sepal width")
+axes[0,1].hist(info["sepal_width"]);
+
+axes[1,0].set_title("Distribution of petal length")
+axes[1,0].hist(info["petal_length"]);
+
+axes[1,1].set_title("Distribution of petal width")
+axes[1,1].hist(info["petal_width"]);
+plt.show()
+
+
+
+fig, axes=plt.subplots(2, 2, figsize=(16, 9))
+axes[0,0].set_title("Distribution of sepal length")
+sns.boxplot( y="sepal_length", x="species", data=info, orient='v', ax=axes[0,0])
+axes[0,1].set_title("Distribution of sepal width")
+sns.boxplot( y="sepal_width", x="species", data=info, orient='v', ax=axes[0,1])
+axes[1,0].set_title("Distribution of petal length")
+sns.boxplot( y="petal_length", x="species", data=info, orient='v', ax=axes[1,0])
+axes[1,1].set_title("Distribution of petal width")
+sns.boxplot( y="petal_width", x="species", data=info, orient='v', ax=axes[1,1])
+plt.show()
