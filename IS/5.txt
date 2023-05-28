@@ -1,8 +1,13 @@
 from math import gcd
 
 # Step 1
-p = 3
-q = 7
+#p = 3
+#q = 7
+p= int(input("Enter your value for p: "))
+print("p:",p)
+
+q = int(input("Enter your value for q: "))
+print("q:",q)
 
 # Step 2
 n = p * q
@@ -30,7 +35,10 @@ print("Public key: (%d, %d)" % (e, n))
 print("Private key: (%d, %d)" % (d, n))
 
 # Plain text
-msg = 11
+#msg = 11
+msg= int(input("Enter your value for msg: "))
+print("msg:",msg)
+
 print("Original message:", msg)
 
 # Encryption
