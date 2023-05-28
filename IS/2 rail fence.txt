@@ -23,4 +23,3 @@ for i in range(len(S)):
 for i in grid:
     for j in i:
         print(j, end = "")
-}
