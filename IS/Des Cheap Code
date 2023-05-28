@@ -1,0 +1,18 @@
+from Crypto.Cipher import DES
+
+# Key should be 8 bytes (64 bits) in length
+key = b'secretkey'
+
+# Create a DES cipher object
+cipher = DES.new(key, DES.MODE_ECB)
+
+# Message to encrypt
+message = b'This is a secret message'
+
+# Encrypt the message
+ciphertext = cipher.encrypt(message)
+print("Ciphertext:", ciphertext)
+
+# Decrypt the ciphertext
+decrypted_message = cipher.decrypt(ciphertext)
+print("Decrypted message:", decrypted_message)
