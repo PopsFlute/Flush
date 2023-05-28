@@ -1,4 +1,5 @@
 pip install pycryptodomex
+agar code mai error module ka tho upar ka command daalna
 
 from Crypto.Cipher import DES
 from Crypto.Util.Padding import pad, unpad
