@@ -1,0 +1,32 @@
+from Crypto.Cipher import DES
+from Crypto.Util.Padding import pad, unpad
+
+# Key should be 8 bytes (64 bits) in length
+key = b'secretkey'
+
+# Truncate or pad the key if necessary
+if len(key) > 8:
+    key = key[:8]
+elif len(key) < 8:
+    key = key.ljust(8, b'\0')
+
+# Create a DES cipher object
+cipher = DES.new(key, DES.MODE_ECB)
+
+# Message to encrypt
+message = b'This is a secret message'
+
+# Pad the message to a multiple of 8 bytes
+padded_message = pad(message, 8)
+
+# Encrypt the message
+ciphertext = cipher.encrypt(padded_message)
+print("Ciphertext:", ciphertext)
+
+# Decrypt the ciphertext
+decrypted_message = cipher.decrypt(ciphertext)
+
+# Unpad the decrypted message
+unpadded_message = unpad(decrypted_message, 8)
+
+print("Decrypted message:", unpadded_message.decode())
