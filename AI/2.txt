@@ -1,0 +1,48 @@
+class TicTacToe:
+    def __init__(self, board=None, player=1):
+        if board is None:
+            self.board = ['X', 'X', 'X', 'X', 'X', 0, 0, 0, 0]
+        else:
+            self.board = board
+        self.player = player
+    def move(self, pos):
+        new_board = self.board[:]
+        new_board[pos] = self.player
+        return TicTacToe(new_board, -self.player)
+    def minimax(self, player):
+        if self.winner() is not None:
+            if self.winner() == 1:
+                return 1
+            elif self.winner() == -1:
+                return -1
+            else:
+                return 0
+        values =[]
+        for i in range(9):
+            if self.board[i] == 0:
+                values.append(self.move(i).minimax(player * -1))
+            if player == 1:
+                return max(values)
+            else:
+                return min(values)
+            sys.tracebacklimit = 0
+    def winner(self):
+        win_pos = [(0, 1, 2),(3, 4, 5),(6, 7, 8),(0, 3, 6),(1, 4, 7),(2, 5, 8),(0, 4, 8),(2, 4, 6)] 
+        for pos in win_pos:
+            if self.board[pos[0]] == self.board[pos[1]] == self.board[pos[2]] and self.board[pos[0]] != 0:
+                return self.board[pos[0]]
+            if 0 not in self.board:
+                return 0
+        return None
+    def best_move(self):
+        best_score = -100
+        move = None
+        for i in range(9):
+            if self.board[i] == 0:
+                score = self.move(i).minimax(-1)
+                if score > best_score:
+                    best_score = score
+                    move = i
+        return move
+board = TicTacToe()
+print(board.best_move())
